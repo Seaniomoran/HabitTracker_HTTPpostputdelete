@@ -1,14 +1,16 @@
+import os
+
 import requests
 from datetime import datetime
 
-TOKEN = "daf24wehamhb232"
-USERNAME = "seaniomoran"
+PIXELA_TOKEN = os.getenv("PIXELA_TOKEN")
+PIXELA_ACCOUNT = os.getenv("PIXELA_ACCOUNT")
 
 pixela_endpoint = "https://pixe.la/v1/users"
 
 user_params = {
-    "token": TOKEN,
-    "username": USERNAME,
+    "token": PIXELA_TOKEN,
+    "username": PIXELA_ACCOUNT,
     "agreeTermsOfService": "yes",
     "notMinor": "yes",
 }
@@ -16,7 +18,7 @@ user_params = {
 # response = requests.post(url=pixela_endpoint, json=user_params)
 # print(response.text)  #commented out because user profile was successfully created
 
-graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
+graph_endpoint = f"{pixela_endpoint}/{PIXELA_ACCOUNT}/graphs"
 graph_id = "graph1"
 
 # graph_config = {
@@ -28,7 +30,7 @@ graph_id = "graph1"
 # }
 
 headers = {
-    "X-User-Token": TOKEN
+    "X-User-Token": PIXELA_TOKEN
 }
 
 # response = requests.post(url=graph_endpoint,  json=graph_config, headers=headers)
